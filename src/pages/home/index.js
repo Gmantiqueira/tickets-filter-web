@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import { Creators as TicketActions } from "../../store/ducks/tickets";
 
 import TicketList from "../../components/TicketList";
+import Filter from "../../components/Filter";
 import { Container } from "./styles";
 
 class Home extends Component {
@@ -33,6 +34,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
+        <Filter />
         <TicketList tickets={this.state.tickets} />
       </Fragment>
     );
