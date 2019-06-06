@@ -9,8 +9,8 @@ const CardContent = ({ ticket, isOpened }) => (
       <div className="about">
         <div>
           <div className="title-date">
-            <h4>Conversa com {ticket.CustomerName}</h4>
-            <p>Criado em: {ticket.DateCreate}</p>
+            <h4 className="darker bold">Conversa com {ticket.CustomerName}</h4>
+            <h4 className="light regular">Criado em: {ticket.DateCreate}</h4>
           </div>
         </div>
 
