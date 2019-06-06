@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { CardWrapper } from "./styles";
+import CardContent from "../CardContent";
 
 class Card extends Component {
   state = {
@@ -20,7 +21,7 @@ class Card extends Component {
       <CardWrapper onClick={this.openCard} isOpened={this.state.isOpened}>
         <header>
           <div className="last">
-            <div class="expert">
+            <div class="expert darker bold">
               <h4>
                 {
                   this.props.ticket.Interactions[
@@ -30,18 +31,23 @@ class Card extends Component {
               </h4>
             </div>
 
-            <div className="interaction">
-              <p>respondeu em </p>
+            <div className="interaction light regular">
+              <h4>respondeu em </h4>
             </div>
           </div>
 
-          <div className="datecreated">
+          <div className="datecreated light regular">
             <h4>Criado em {this.props.ticket.DateCreate}</h4>
           </div>
         </header>
 
+        <CardContent
+          ticket={this.props.ticket}
+          isOpened={this.state.isOpened}
+        />
+
         <main>
-          <div class="message">
+          <div class="message dark regular">
             <h4>
               {this.props.ticket.Interactions[
                 this.props.ticket.Interactions.length - 1
@@ -54,7 +60,7 @@ class Card extends Component {
             </h4>
           </div>
 
-          <div class="number">
+          <div class="number normal ">
             <h4>{this.props.ticket.Interactions.length} interações</h4>
           </div>
         </main>

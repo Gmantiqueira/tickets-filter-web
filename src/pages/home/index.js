@@ -1,22 +1,19 @@
 import React, { Component, Fragment } from "react";
 import api from "../../services/api";
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as TicketActions } from "../../store/ducks/tickets";
-
 import TicketList from "../../components/TicketList";
 import Filter from "../../components/Filter";
 import { Container } from "./styles";
 
 class Home extends Component {
   state = {
-    tickets: []
+    tickets: [],
+    url: "/?orderby=score_reverse"
   };
 
   apiGet = async e => {
     try {
-      const { data: tickets } = await api.get(`/?orderby=score_reverse`);
+      const { data: tickets } = await api.get(this.state.url);
 
       console.log(tickets);
       this.setState({
@@ -34,21 +31,11 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Filter />
+        <Filter apiUrl={this.state.url} />
         <TicketList tickets={this.state.tickets} />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  tickets: state.tickets
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(TicketActions, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default Home;

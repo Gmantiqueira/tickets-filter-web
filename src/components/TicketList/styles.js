@@ -6,9 +6,4 @@ export const Container = styled.div`
 
   height: 100%;
   width: 100%;
-
-  h1 {
-    display: block;
-    width: 100%;
-  }
 `;
