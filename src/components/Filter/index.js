@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import InputMask from "react-input-mask";
+import InputMask from "react-input-mask"; 
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as TicketActions } from "../../store/ducks/tickets";
 
 import { Container } from "./styles";
 
 class Filter extends Component {
-  state = {
-    sinceInput: "",
-    untilInput: "",
-    filterValue: ""
-  };
 
   sortBy = () => {
     let select = document.getElementById("filter");
-    this.setState({ filterValue: select.options.selectedIndex });
+    this.props.setOrder({ filterValue: select.options.selectedIndex });
+    this.props.updateUrl();
   };
 
   render() {
@@ -56,9 +56,9 @@ class Filter extends Component {
                 this.sortBy();
               }}
             >
-              <option value="0">Data de Criação</option>
-              <option value="1">Data de Atualização</option>
-              <option value="2">Pontuação</option>
+              <option value="datecreate">Data de Criação</option>
+              <option value="dateupdate">Data de Atualização</option>
+              <option value="score">Pontuação</option>
             </select>
           </div>
         </form>
@@ -67,4 +67,14 @@ class Filter extends Component {
   }
 }
 
-export default Filter;
+const mapStateToProps = state => ({
+  tickets: state.tickets
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(TicketActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Filter);
