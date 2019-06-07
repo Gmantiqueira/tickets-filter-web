@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InputMask from "react-input-mask"; 
+import InputMask from "react-input-mask";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,25 +8,42 @@ import { Creators as TicketActions } from "../../store/ducks/tickets";
 import { Container } from "./styles";
 
 class Filter extends Component {
-
   sortBy = () => {
     let select = document.getElementById("filter");
-    this.props.setOrder({ filterValue: select.options.selectedIndex });
+    let selectValue = select.options[select.options.selectedIndex].value;
+    this.props.setOrder(selectValue);
+    this.props.updateUrl();
+    this.props.apiGet();
+  };
+
+  dateValue = e => {
+    let inputValue = e.target.value;
+    inputValue = inputValue.replace("/", "-");
+    if (e.target.attributes["id"].value === "since") {
+      this.props.setSince(inputValue);
+    }
+    if (e.target.attributes["id"].value === "until") {
+      this.props.setUntil(inputValue);
+    }
     this.props.updateUrl();
   };
 
   render() {
     return (
       <Container>
-        <form>
+        <form
+          onSubmit={() => {
+            this.props.apiGet();
+          }}
+        >
           <div className="date dark regular">
             <div className="since">
               <InputMask
                 type="text"
                 id="since"
                 mask="99/99/9999"
-                onChange={e => {
-                  this.setState({ sinceInput: e.target.value });
+                onKeyUp={e => {
+                  this.dateValue(e);
                 }}
               />
             </div>
@@ -38,15 +55,15 @@ class Filter extends Component {
                 id="until"
                 type="text"
                 mask="99/99/9999"
-                onChange={e => {
-                  this.setState({ untilInput: e.target.value });
+                onKeyUp={e => {
+                  this.dateValue(e);
                 }}
               />
             </div>
           </div>
 
           <div className="filter">
-            <label className="normal regular" for="filter">
+            <label className="normal regular" htmlFor="filter">
               Agrupar por
             </label>
             <select
@@ -56,7 +73,9 @@ class Filter extends Component {
                 this.sortBy();
               }}
             >
-              <option selected value="datecreate">Data de Criação</option>
+              <option selected value="datecreate">
+                Data de Criação
+              </option>
               <option value="dateupdate">Data de Atualização</option>
               <option value="score">Pontuação</option>
             </select>

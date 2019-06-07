@@ -16,10 +16,10 @@ class CardContent extends React.Component {
             <div>
               <div className="title-date">
                 <h4 className="darker bold">
-                  Conversa com {this.props.ticket.CustomerName}
+                  Conversa com {this.props.ticketList.CustomerName}
                 </h4>
                 <h4 className="light regular">
-                  Criado em: {this.props.ticket.DateCreate}
+                  Criado em: {this.props.ticketList.DateCreate}
                 </h4>
               </div>
             </div>
@@ -29,12 +29,12 @@ class CardContent extends React.Component {
             </div>
           </div>
           <div className="subject bold light">
-            <h4>Assunto: {this.props.ticket.Interactions[0].Subject}</h4>
+            <h4>Assunto: {this.props.ticketList.Interactions[0].Subject}</h4>
           </div>
         </About>
 
         <Content>
-          {this.props.ticket.Interactions.map(interaction => (
+          {this.props.ticketList.Interactions.map(interaction => (
             <div className="message">
               <div className="photo">
                 <div className="img" />
@@ -54,7 +54,7 @@ class CardContent extends React.Component {
 
         <Footer>
           <h4 class="semibold light">
-            Última interação feita em {this.props.ticket.DateUpdate}
+            Última interação feita em {this.props.ticketList.DateUpdate}
           </h4>
         </Footer>
       </ContentWrapper>

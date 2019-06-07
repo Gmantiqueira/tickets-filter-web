@@ -5,6 +5,7 @@ export const Types = {
   UNTIL: "ticket/UNTIL",
   PAGE: "ticket/PAGE",
   ORDERBY: "ticket/ORDERBY",
+  PRIORITY: "ticket/PRIORITY"
 };
 
 const INITIAL_STATE = {
@@ -25,34 +26,34 @@ export default function ticket(state = INITIAL_STATE, action) {
       let page = "";
       let priority = "";
 
-      if(state.order !== ""){
-        order = "&orderby=" + state.order
+      if (state.order !== "") {
+        order = "&orderby=" + state.order;
       }
 
-      if(state.since !== ""){
-        order = "&since=" + state.since
+      if (state.since !== "") {
+        order = "&since=" + state.since;
       }
 
-      if(state.until !== ""){
-        order = "&until=" + state.until
+      if (state.until !== "") {
+        order = "&until=" + state.until;
       }
 
-      if(state.page !== ""){
-        order = "&page=" + state.page
+      if (state.page !== "") {
+        order = "&page=" + state.page;
       }
 
-      if(state.priority !== ""){
-        order = "&highpriority=" + state.showPriority
+      if (state.showPriority !== "") {
+        order = "&highpriority=" + state.showPriority;
       }
 
       return {
         ...state,
-        apiUrl: '/?' + order + since + until + page + priority
+        apiUrl: "/?" + order + since + until + page + priority
       };
     case Types.ORDERBY:
       return {
         ...state,
-        filter: action.payload.order
+        order: action.payload.order
       };
     case Types.PAGE:
       return {
@@ -62,12 +63,12 @@ export default function ticket(state = INITIAL_STATE, action) {
     case Types.SINCE:
       return {
         ...state,
-        since: action.payload.since.replace('/', '-')
+        since: action.payload.since.replace("/", "-")
       };
     case Types.UNTIL:
       return {
         ...state,
-        until: action.payload.until.replace('/', '-')
+        until: action.payload.until.replace("/", "-")
       };
     default:
       return state;
@@ -76,7 +77,7 @@ export default function ticket(state = INITIAL_STATE, action) {
 
 export const Creators = {
   updateUrl: () => ({
-    type: Types.UPDATE,
+    type: Types.UPDATE
   }),
   setOrder: order => ({
     type: Types.ORDERBY,
@@ -87,11 +88,11 @@ export const Creators = {
     payload: { since }
   }),
   setUntil: until => ({
-    type: Types.API,
+    type: Types.UNTIL,
     payload: { until }
   }),
   setPriority: showPriority => ({
-    type: Types.API,
+    type: Types.PRIORITY,
     payload: { showPriority }
   }),
   setPage: page => ({

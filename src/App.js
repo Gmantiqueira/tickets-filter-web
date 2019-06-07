@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import GlobalStyle from "./styles/global";
 
-import { Container, Wrapper } from "./styles/components";
+import { Container } from "./styles/components";
 
 import store from "./store";
 import Routes from "./routes";
@@ -14,12 +14,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Wrapper>
-            <GlobalStyle />
-            <Container>
-              <Routes />
-            </Container>
-          </Wrapper>
+          <GlobalStyle />
+          <Container>
+            <Routes />
+          </Container>
         </BrowserRouter>
       </Provider>
     );

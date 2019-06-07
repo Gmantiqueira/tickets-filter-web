@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import api from "../../services/api";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -10,55 +9,13 @@ import Card from "../Card";
 
 class TicketList extends Component {
   state = {
-    tickets: [],
-    apiUrl: this.props.tickets.apiUrl
+    tickets: this.props.tickets
   };
-
-  apiGet = async e => {
-    try {
-      const { data: tickets } = await api.get(this.state.apiUrl);
-
-      console.log(tickets);
-
-      this.setState({
-        ...this.state.tickets,
-        tickets
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  componentDidMount() {
-    this.props.updateUrl();
-    this.apiGet();
-    // window.addEventListener("scroll", this.ajaxPagination);
-  }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("scroll", this.ajaxPagination);
-  // }
-
-  // ajaxPagination = async e => {
-  //   if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-  //     this.setState({ page: this.state.page + 1 });
-  //     this.setState({
-  //       url: "/?page=" + this.state.page
-  //     });
-  //     const { data: tickets } = await api.get(this.state.url);
-
-  //     this.setState({
-  //       ...this.state.tickets,
-  //       tickets
-  //     });
-  //   }
-  // };
-
   render() {
     return (
       <Container>
-        {this.state.tickets.map(ticket => (
-          <Card ticket={ticket} />
+        {this.props.ticketList.map(ticket => (
+          <Card ticketList={ticket} />
         ))}
       </Container>
     );
