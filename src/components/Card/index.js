@@ -16,9 +16,16 @@ class Card extends Component {
     }
   };
 
+  false = () => {
+    return false;
+  };
+
   render() {
     return (
-      <CardWrapper onClick={this.openCard} isOpened={this.state.isOpened}>
+      <CardWrapper
+        onClick={!this.state.isOpened ? this.openCard : this.false}
+        isOpened={this.state.isOpened}
+      >
         <header>
           <div className="last">
             <div class="expert darker bold">
@@ -44,6 +51,7 @@ class Card extends Component {
         <CardContent
           ticket={this.props.ticket}
           isOpened={this.state.isOpened}
+          openCard={this.openCard}
         />
 
         <main>

@@ -3,16 +3,18 @@ import styled from "styled-components";
 export const CardWrapper = styled.div`
   border: 1px solid #dde1e8;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   height: auto;
-  padding: 24px;
+  padding: ${props => (props.isOpened ? `0` : `24px`)};
   margin: 8px auto;
   max-width: 800px;
-  transition: 0.5s ease all;
   width: 100%;
+  max-height: 1000px;
+  transition: 0.3s ease all;
 
   header,
   main {
@@ -22,6 +24,7 @@ export const CardWrapper = styled.div`
     justify-content: space-between;
     opacity: ${props => (props.isOpened ? `0` : `1`)};
     transition: 0.3s ease all;
+    transition: 0.1s ease opacity;
     width: 100%;
 
     .last {

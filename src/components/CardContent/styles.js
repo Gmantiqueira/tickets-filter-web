@@ -11,6 +11,7 @@ export const ContentWrapper = styled.div`
   justify-content: space-between;
 
   margin: 8px auto;
+  max-height: ${props => (props.isOpened ? `800px` : `auto`)};
   max-width: 800px;
   transition: 0.5s ease all;
   width: 100%;
@@ -20,9 +21,11 @@ export const ContentWrapper = styled.div`
 `;
 
 export const About = styled.div`
+  border-bottom: 1px solid #dde1e8;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 24px;
   .about {
     display: flex;
     flex: 1;
@@ -59,10 +62,12 @@ export const About = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 32px 24px;
+  padding: ${props => (props.isOpened ? `32px 24px` : `0`)};
+  transition: 0.5s ease all;
 
   .message {
     display: flex;
+    padding: ${props => (props.isOpened ? `0` : `32px 24px`)};
     margin-bottom: 32px;
     width: 100%;
 
@@ -115,4 +120,6 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: ${props => (props.isOpened ? `24px` : `0`)};
+  transition: 0.5s ease all;
 `;
