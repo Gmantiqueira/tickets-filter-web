@@ -30,11 +30,7 @@ class TicketList extends Component {
   };
 
   componentDidMount() {
-    this.apiGet();
-    // window.addEventListener("scroll", this.ajaxPagination);
-  }
-
-  componentDidUpdate() {
+    this.props.updateUrl();
     this.apiGet();
     // window.addEventListener("scroll", this.ajaxPagination);
   }

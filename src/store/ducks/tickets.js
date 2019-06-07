@@ -19,11 +19,11 @@ const INITIAL_STATE = {
 export default function ticket(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.UPDATE:
-      let order;
-      let since;
-      let until;
-      let page;
-      let priority;
+      let order = "";
+      let since = "";
+      let until = "";
+      let page = "";
+      let priority = "";
 
       if(state.order !== ""){
         order = "&orderby=" + state.order
@@ -42,7 +42,7 @@ export default function ticket(state = INITIAL_STATE, action) {
       }
 
       if(state.priority !== ""){
-        order = "&highpriority=" + state.priority
+        order = "&highpriority=" + state.showPriority
       }
 
       return {
