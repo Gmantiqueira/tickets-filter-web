@@ -9,6 +9,7 @@ export const CardWrapper = styled.div`
   justify-content: space-between;
 
   height: auto;
+  min-height: 160px;
   padding: ${props => (props.isOpened ? `0` : `24px`)};
   margin: 8px auto;
   max-width: 800px;

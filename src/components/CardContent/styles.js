@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContentWrapper = styled.div`
   cursor: pointer;
-  height: ${props => (props.isOpened ? `auto` : `0`)};
+  max-height: ${props => (props.isOpened ? `1000px` : `0`)};
   opacity: ${props => (props.isOpened ? `1` : `0`)};
 
   display: flex;
@@ -11,13 +11,9 @@ export const ContentWrapper = styled.div`
   justify-content: space-between;
 
   margin: 8px auto;
-  max-height: ${props => (props.isOpened ? `800px` : `auto`)};
   max-width: 800px;
-  transition: 0.5s ease all;
+  transition: max-height 0.5s ease, opacity 0.2s ease;
   width: 100%;
-  * {
-    height: ${props => (props.isOpened ? `auto` : `0`)};
-  }
 `;
 
 export const About = styled.div`
@@ -62,13 +58,15 @@ export const About = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${props => (props.isOpened ? `32px 24px` : `0`)};
-  transition: 0.5s ease all;
+  padding: 32px 24px;
+  max-height: ${props => (props.isOpened ? `0` : `1000px`)};
+  transition: max-height 0.5s ease, opacity 0.2s ease;
 
   .message {
     display: flex;
     padding: ${props => (props.isOpened ? `0` : `32px 24px`)};
     margin-bottom: 32px;
+    transition: 1s ease padding;
     width: 100%;
 
     .photo {
@@ -120,6 +118,6 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: ${props => (props.isOpened ? `24px` : `0`)};
+  padding: 24px;
   transition: 0.5s ease all;
 `;
