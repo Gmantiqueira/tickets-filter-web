@@ -56,7 +56,7 @@ class Filter extends Component {
                 this.sortBy();
               }}
             >
-              <option value="datecreate">Data de Criação</option>
+              <option selected value="datecreate">Data de Criação</option>
               <option value="dateupdate">Data de Atualização</option>
               <option value="score">Pontuação</option>
             </select>

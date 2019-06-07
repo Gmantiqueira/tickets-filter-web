@@ -73,6 +73,7 @@ export const Container = styled.div`
 
     select,
     option {
+      cursor: pointer;
       padding: 8px 16px;
       text-align: center;
       @media screen and (max-width: 510px) {
