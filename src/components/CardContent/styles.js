@@ -72,7 +72,7 @@ export const Content = styled.div`
 
   .message {
     display: flex;
-    padding: 0;
+    padding: 32px 24px;
     margin-bottom: 32px;
     transition: 1s ease padding;
     width: 100%;
