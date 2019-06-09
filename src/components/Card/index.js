@@ -63,8 +63,6 @@ class Card extends Component {
     if (month < 10) {
       month = "0" + month;
     }
-    console.log(date);
-    console.log(month);
     let dateFormated = day + "/" + month + "/" + newDate.getFullYear();
 
     return dateFormated;
