@@ -80,7 +80,9 @@ class Filter extends Component {
                 + Data de Criação -
               </option>
               <option value="dateupdate">- Data de Atualização +</option>
-              <option value="dateupdate_reverse">+ Data de Atualização -</option>
+              <option value="dateupdate_reverse">
+                + Data de Atualização -
+              </option>
               <option value="score">Menor Prioridade</option>
               <option value="score_reverse">Maior Prioridade</option>
             </select>
