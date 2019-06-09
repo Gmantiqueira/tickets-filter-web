@@ -89,7 +89,14 @@ class Card extends Component {
             </div>
 
             <div className="interaction light regular">
-              <h4>respondeu em </h4>
+              <h4>
+                respondeu em{" "}
+                {this.formatDate(
+                  this.props.ticketList.Interactions[
+                    this.props.ticketList.Interactions.length - 1
+                  ].DateCreate
+                )}
+              </h4>
             </div>
           </div>
 
