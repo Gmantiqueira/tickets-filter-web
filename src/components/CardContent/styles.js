@@ -12,7 +12,8 @@ export const ContentWrapper = styled.div`
 
   margin: 8px auto;
   max-width: 800px;
-  transition: max-height 0.5s ease, opacity 0.2s ease;
+  transition: max-height 0.5s ease,
+    opacity ${props => (props.isOpened ? `.7s` : `.2s`)} ease;
   width: 100%;
 `;
 
@@ -22,8 +23,9 @@ export const About = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-height: ${props => (props.isOpened ? `0` : `1000px`)};
   padding: 24px;
-  transition: border-color ease 0.2s;
+  transition: max-height 0.5s ease, border-color ease 0.2s;
   &:hover {
     border-color: #437cdf;
   }

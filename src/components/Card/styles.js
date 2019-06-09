@@ -36,9 +36,15 @@ export const CardWrapper = styled.div`
     transition: opacity 0.2s ease;
     width: 100%;
 
+    .datecreated {
+      @media screen and (max-width: 468px) {
+        margin-top: 16px;
+      }
+    }
+
     .message {
       flex: 2;
-      width: 75%;
+      width: 60%;
       h4 {
         overflow: hidden;
         text-overflow: ellipsis;
