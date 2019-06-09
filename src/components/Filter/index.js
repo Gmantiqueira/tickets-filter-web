@@ -11,8 +11,8 @@ class Filter extends Component {
   sortBy = async e => {
     let select = document.getElementById("filter");
     let selectValue = select.options[select.options.selectedIndex].value;
-    await this.props.setOrder(selectValue);
-    await this.props.updateUrl();
+    this.props.setOrder(selectValue);
+    this.props.updateUrl();
     this.props.apiGet();
   };
 
@@ -28,14 +28,19 @@ class Filter extends Component {
     this.props.updateUrl();
   };
 
+  componentDidMount() {
+    document.addEventListener("keypress", event => {
+      const keyCode = event.keyCode;
+      if (keyCode === 13) {
+        this.props.apiGet();
+      }
+    });
+  }
+
   render() {
     return (
       <Container>
-        <form
-          onSubmit={() => {
-            this.props.apiGet();
-          }}
-        >
+        <form id="filterForm" action="" method="GET">
           <div className="date dark regular">
             <div className="since">
               <InputMask

@@ -15,13 +15,20 @@ class Home extends Component {
     tickets: [],
     page: 1,
     loading: false,
-    loadingPage: false
+    loadingPage: false,
+    stopPagination: false
   };
 
   apiGet = async e => {
     this.setState({ loading: true, tickets: [] });
-    await this.props.updateUrl();
     try {
+      await this.setState({
+        page: 1,
+        stopPagination: false
+      });
+      await this.props.setPage(this.state.page);
+      await this.props.updateUrl();
+
       const { data: tickets } = await api.get(this.props.tickets.apiUrl);
 
       this.setState({
@@ -48,7 +55,8 @@ class Home extends Component {
   handleScroll = async e => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-      !this.state.loadingPage
+      !this.state.loadingPage &&
+      !this.state.stopPagination
     ) {
       this.setState({ page: this.state.page + 1 });
       this.props.setPage(this.state.page);
@@ -57,11 +65,16 @@ class Home extends Component {
       try {
         const { data: newTickets } = await api.get(this.props.tickets.apiUrl);
 
+        console.log(newTickets);
+        if (newTickets.length === 0) {
+          this.setState({ stopPagination: true });
+        }
+
         this.setState({
           tickets: [...this.state.tickets, ...newTickets]
         });
-        // tickets: [...this.state.tickets, newTickets]
       } catch (err) {
+        this.setState({ loadingPage: false });
         console.log(err);
       } finally {
         this.setState({ loadingPage: false });
@@ -80,13 +93,13 @@ class Home extends Component {
         {this.state.loading ? (
           <Loader type="TailSpin" color="#8bc53f" height="100" width="100" />
         ) : (
-          <h1 />
+          <span />
         )}
         <TicketList ticketList={this.state.tickets} />
         {this.state.loadingPage && !this.state.loading ? (
           <Loader type="TailSpin" color="#8bc53f" height="50" width="50" />
         ) : (
-          <h1 />
+          <span />
         )}
       </Container>
     );
