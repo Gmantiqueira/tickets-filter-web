@@ -74,10 +74,15 @@ class Filter extends Component {
               }}
             >
               <option defaultValue value="datecreate">
-                Data de Criação
+                - Data de Criação +
               </option>
-              <option value="dateupdate">Data de Atualização</option>
-              <option value="score">Pontuação</option>
+              <option defaultValue value="datecreate_reverse">
+                + Data de Criação -
+              </option>
+              <option value="dateupdate">- Data de Atualização +</option>
+              <option value="dateupdate_reverse">+ Data de Atualização -</option>
+              <option value="score">Menor Prioridade</option>
+              <option value="score_reverse">Maior Prioridade</option>
             </select>
           </div>
         </form>
