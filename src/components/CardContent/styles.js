@@ -22,6 +22,7 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 24px;
+  overflow: hidden;
   transition: border-color ease 0.2s;
   &:hover {
     border-color: #437cdf;
@@ -68,7 +69,7 @@ export const Content = styled.div`
 
   .message {
     display: flex;
-    padding: 32px 24px;
+    padding: 0;
     margin-bottom: 32px;
     transition: 1s ease padding;
     width: 100%;
