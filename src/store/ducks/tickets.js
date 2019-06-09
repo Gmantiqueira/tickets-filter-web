@@ -1,5 +1,3 @@
-import qs from "qs";
-
 export const Types = {
   UPDATE: "ticket/UPDATE",
   SETFILTER: "ticket/ORDERBY",
@@ -13,7 +11,7 @@ export const Types = {
 const INITIAL_STATE = {
   apiUrl: "/",
   page: "1",
-  orderby: "",
+  orderby: "datecreate",
   since: "",
   until: "",
   highpriority: ""
@@ -31,20 +29,20 @@ export default function ticket(state = INITIAL_STATE, action) {
       if (state.order !== "") {
         orderby = "&orderby=" + state.order;
       }
-      if (state.since !== "") {
-        orderby = "&since=" + state.since;
+      if (state.since !== "" && state.since !== "__/__/____") {
+        since = "&since=" + state.since;
       }
 
-      if (state.until !== "") {
-        orderby = "&until=" + state.until;
+      if (state.until !== "" && state.until !== "__/__/____") {
+        until = "&until=" + state.until;
       }
 
       if (state.page !== "") {
-        orderby = "&page=" + state.page;
+        page = "&page=" + state.page;
       }
 
       if (state.highpriority !== "") {
-        orderby = "&highpriority=" + state.highpriority;
+        priority = "&highpriority=" + state.highpriority;
       }
 
       let url = "/" + orderby + since + until + page + priority;
