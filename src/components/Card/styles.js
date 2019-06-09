@@ -26,6 +26,15 @@ export const CardWrapper = styled.div`
     border-color: ${props => (props.isOpened ? `#dde1e8` : `#437cdf`)};
   }
 
+  header {
+    @media screen and (max-width: 568px) {
+      flex-direction: column;
+      .datecreated {
+        margin-top: 8px;
+      }
+    }
+  }
+
   header,
   main {
     display: flex;
@@ -35,12 +44,6 @@ export const CardWrapper = styled.div`
     opacity: ${props => (props.isOpened ? `0` : `1`)};
     transition: opacity 0.2s ease;
     width: 100%;
-
-    .datecreated {
-      @media screen and (max-width: 468px) {
-        margin-top: 16px;
-      }
-    }
 
     .message {
       flex: 2;
