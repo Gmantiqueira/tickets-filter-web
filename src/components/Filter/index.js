@@ -8,11 +8,11 @@ import { Creators as TicketActions } from "../../store/ducks/tickets";
 import { Container } from "./styles";
 
 class Filter extends Component {
-  sortBy = () => {
+  sortBy = async e => {
     let select = document.getElementById("filter");
     let selectValue = select.options[select.options.selectedIndex].value;
-    this.props.setOrder(selectValue);
-    this.props.updateUrl();
+    await this.props.setOrder(selectValue);
+    await this.props.updateUrl();
     this.props.apiGet();
   };
 
