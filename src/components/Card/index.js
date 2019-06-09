@@ -20,10 +20,6 @@ class Card extends Component {
     }
   };
 
-  componentDidMount() {
-    this.formatDate();
-  }
-
   formatDateToMessage = date => {
     let newDate = new Date("2017-12-12 01:25:30");
     let diff = Date.now() - newDate.getTime();
@@ -57,7 +53,7 @@ class Card extends Component {
   formatDate = date => {
     let newDate = new Date(date);
     let day = newDate.getDate();
-    let month = newDate.getMonth();
+    let month = newDate.getMonth() + 1;
     if (month === 0) {
       month = 1;
     }

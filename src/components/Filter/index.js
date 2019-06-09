@@ -29,9 +29,10 @@ class Filter extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener("keypress", event => {
+    document.addEventListener("keypress", async event => {
       const keyCode = event.keyCode;
       if (keyCode === 13) {
+        await this.props.updateUrl();
         this.props.apiGet();
       }
     });

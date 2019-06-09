@@ -9,9 +9,9 @@ export const Types = {
 };
 
 const INITIAL_STATE = {
-  apiUrl: "/",
+  apiUrl: "/?orderby=datecreate",
   page: "1",
-  orderby: "datecreate",
+  orderby: "",
   since: "",
   until: "",
   highpriority: ""
