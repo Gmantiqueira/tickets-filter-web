@@ -6,7 +6,7 @@ import CheckIcon from "../../assets/img/check-icon.png";
 class CardContent extends React.Component {
   render() {
     return (
-      <ContentWrapper isOpened={this.props.isOpened}>
+      <ContentWrapper id="card-content" isOpened={this.props.isOpened}>
         <About
           onClick={() => {
             this.props.openCard();
@@ -45,7 +45,7 @@ class CardContent extends React.Component {
                   <h4 className="bold darker">{interaction.Message}</h4>
                 </div>
                 <div className="date">
-                  <p class="semibold light">{interaction.DateCreate}</p>
+                  <p className="semibold light">{interaction.DateCreate}</p>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ class CardContent extends React.Component {
         </Content>
 
         <Footer>
-          <h4 class="semibold light">
+          <h4 className="semibold light">
             Última interação feita em {this.props.ticketList.DateUpdate}
           </h4>
         </Footer>

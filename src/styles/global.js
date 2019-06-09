@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html, body, #root {
-        height: 100%;
+        height: auto;
     }
     h4{
         font-size: 14px;

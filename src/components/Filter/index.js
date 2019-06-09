@@ -64,7 +64,7 @@ class Filter extends Component {
 
           <div className="filter">
             <label className="normal regular" htmlFor="filter">
-              Agrupar por
+              Ordenar por
             </label>
             <select
               name="filter"
@@ -73,7 +73,7 @@ class Filter extends Component {
                 this.sortBy();
               }}
             >
-              <option selected value="datecreate">
+              <option defaultValue value="datecreate">
                 Data de Criação
               </option>
               <option value="dateupdate">Data de Atualização</option>

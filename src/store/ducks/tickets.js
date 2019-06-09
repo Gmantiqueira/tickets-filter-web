@@ -1,3 +1,5 @@
+import qs from "qs";
+
 export const Types = {
   UPDATE: "ticket/UPDATE",
   SETFILTER: "ticket/ORDERBY",
@@ -10,50 +12,52 @@ export const Types = {
 
 const INITIAL_STATE = {
   apiUrl: "/",
-  page: "",
-  order: "",
+  page: "1",
+  orderby: "",
   since: "",
   until: "",
-  showPriority: ""
+  highpriority: ""
 };
 
 export default function ticket(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.UPDATE:
-      let order = "";
+      let orderby = "";
       let since = "";
       let until = "";
       let page = "";
       let priority = "";
 
       if (state.order !== "") {
-        order = "&orderby=" + state.order;
+        orderby = "&orderby=" + state.order;
       }
-
       if (state.since !== "") {
-        order = "&since=" + state.since;
+        orderby = "&since=" + state.since;
       }
 
       if (state.until !== "") {
-        order = "&until=" + state.until;
+        orderby = "&until=" + state.until;
       }
 
       if (state.page !== "") {
-        order = "&page=" + state.page;
+        orderby = "&page=" + state.page;
       }
 
-      if (state.showPriority !== "") {
-        order = "&highpriority=" + state.showPriority;
+      if (state.highpriority !== "") {
+        orderby = "&highpriority=" + state.highpriority;
       }
+
+      let url = "/" + orderby + since + until + page + priority;
+      url = url.replace("&", "?");
 
       return {
         ...state,
-        apiUrl: "/?" + order + since + until + page + priority
+        apiUrl: url
       };
     case Types.ORDERBY:
       return {
         ...state,
-        order: action.payload.order
+        order: action.payload.orderby
       };
     case Types.PAGE:
       return {
@@ -79,9 +83,9 @@ export const Creators = {
   updateUrl: () => ({
     type: Types.UPDATE
   }),
-  setOrder: order => ({
+  setOrder: orderby => ({
     type: Types.ORDERBY,
-    payload: { order }
+    payload: { orderby }
   }),
   setSince: since => ({
     type: Types.SINCE,
@@ -91,9 +95,9 @@ export const Creators = {
     type: Types.UNTIL,
     payload: { until }
   }),
-  setPriority: showPriority => ({
+  setPriority: highpriority => ({
     type: Types.PRIORITY,
-    payload: { showPriority }
+    payload: { highpriority }
   }),
   setPage: page => ({
     type: Types.PAGE,

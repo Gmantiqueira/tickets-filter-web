@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ContentWrapper = styled.div`
-  cursor: pointer;
   max-height: ${props => (props.isOpened ? `1000px` : `0`)};
   opacity: ${props => (props.isOpened ? `1` : `0`)};
 
@@ -18,10 +17,15 @@ export const ContentWrapper = styled.div`
 
 export const About = styled.div`
   border-bottom: 1px solid #dde1e8;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 24px;
+  transition: border-color ease 0.2s;
+  &:hover {
+    border-color: #437cdf;
+  }
   .about {
     display: flex;
     flex: 1;
@@ -64,7 +68,7 @@ export const Content = styled.div`
 
   .message {
     display: flex;
-    padding: ${props => (props.isOpened ? `0` : `32px 24px`)};
+    padding: 32px 24px;
     margin-bottom: 32px;
     transition: 1s ease padding;
     width: 100%;
@@ -77,6 +81,19 @@ export const Content = styled.div`
         height: 32px;
         margin-right: 16px;
         width: 32px;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      .wrapper {
+        background-color: #eff1f4;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        max-width: 500px;
+        padding: 16px;
+        width: 100%;
       }
     }
 
@@ -93,22 +110,6 @@ export const Content = styled.div`
 
       .date {
         text-align: right;
-      }
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      .wrapper {
-        background-color: #eff1f4;
-        border-radius: 6px;
-        margin-bottom: 8px;
-        max-width: 500px;
-        padding: 16px;
-        width: 100%;
-      }
-
-      .date {
       }
     }
   }

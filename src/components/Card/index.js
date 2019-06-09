@@ -27,12 +27,12 @@ class Card extends Component {
   render() {
     return (
       <CardWrapper
-        onClick={!this.state.isOpened ? this.openCard : this.false}
+        onClick={!this.state.isOpened && this.openCard}
         isOpened={this.state.isOpened}
       >
         <header>
           <div className="last">
-            <div class="expert darker bold">
+            <div className="expert darker bold">
               <h4>
                 {
                   this.props.ticketList.Interactions[
@@ -58,20 +58,17 @@ class Card extends Component {
           openCard={this.openCard}
         />
         <main>
-          <div class="message dark regular">
+          <div className="message dark regular">
             <h4>
-              {this.props.ticketList.Interactions[
-                this.props.ticketList.Interactions.length - 1
-              ].Message.substring(0, 70)}{" "}
-              {this.props.ticketList.Interactions[
-                this.props.ticketList.Interactions.length - 1
-              ].Message.length > 40
-                ? "..."
-                : ""}
+              {
+                this.props.ticketList.Interactions[
+                  this.props.ticketList.Interactions.length - 1
+                ].Message
+              }
             </h4>
           </div>
 
-          <div class="number normal ">
+          <div className="number normal ">
             <h4>{this.props.ticketList.Interactions.length} interações</h4>
           </div>
         </main>

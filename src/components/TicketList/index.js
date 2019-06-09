@@ -8,14 +8,11 @@ import { Container } from "./styles";
 import Card from "../Card";
 
 class TicketList extends Component {
-  state = {
-    tickets: this.props.tickets
-  };
   render() {
     return (
       <Container>
         {this.props.ticketList.map(ticket => (
-          <Card ticketList={ticket} />
+          <Card key={ticket.TicketID} ticketList={ticket} />
         ))}
       </Container>
     );
