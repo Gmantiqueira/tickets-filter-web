@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ContentWrapper = styled.div`
+  height: auto;
   max-height: ${props => (props.isOpened ? `1000px` : `0`)};
   opacity: ${props => (props.isOpened ? `1` : `0`)};
 
@@ -22,7 +23,6 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 24px;
-  overflow: hidden;
   transition: border-color ease 0.2s;
   &:hover {
     border-color: #437cdf;
@@ -53,6 +53,9 @@ export const About = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    @media screen and (max-width: 568px) {
+      flex-direction: column;
+    }
   }
   h4,
   p {

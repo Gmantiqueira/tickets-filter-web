@@ -54,7 +54,7 @@ class Filter extends Component {
               />
             </div>
 
-            <h4>-></h4>
+            <h4>-</h4>
 
             <div className="until">
               <InputMask
