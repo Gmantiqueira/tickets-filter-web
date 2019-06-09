@@ -65,7 +65,6 @@ class Home extends Component {
       try {
         const { data: newTickets } = await api.get(this.props.tickets.apiUrl);
 
-        console.log(newTickets);
         if (newTickets.length === 0) {
           this.setState({ stopPagination: true });
         }
