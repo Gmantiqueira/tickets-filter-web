@@ -19,7 +19,8 @@ class CardContent extends React.Component {
                   Conversa com {this.props.ticketList.CustomerName}
                 </h4>
                 <h4 className="light regular">
-                  Criado em: {this.props.ticketList.DateCreate}
+                  Criado em:{" "}
+                  {this.props.formatDate(this.props.ticketList.DateCreate)}
                 </h4>
               </div>
             </div>
@@ -45,7 +46,9 @@ class CardContent extends React.Component {
                   <h4 className="bold darker">{interaction.Message}</h4>
                 </div>
                 <div className="date">
-                  <p className="semibold light">{interaction.DateCreate}</p>
+                  <p className="semibold light">
+                    {this.props.formatDateToMessage(interaction.DateCreate)}
+                  </p>
                 </div>
               </div>
             </div>
@@ -54,7 +57,8 @@ class CardContent extends React.Component {
 
         <Footer>
           <h4 className="semibold light">
-            Última interação feita em {this.props.ticketList.DateUpdate}
+            Última interação feita -{" "}
+            {this.props.formatDate(this.props.ticketList.DateUpdate)}
           </h4>
         </Footer>
       </ContentWrapper>

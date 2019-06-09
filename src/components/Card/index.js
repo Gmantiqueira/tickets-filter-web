@@ -20,8 +20,58 @@ class Card extends Component {
     }
   };
 
-  false = () => {
-    return false;
+  componentDidMount() {
+    this.formatDate();
+  }
+
+  formatDateToMessage = date => {
+    let newDate = new Date("2017-12-12 01:25:30");
+    let diff = Date.now() - newDate.getTime();
+    let diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (diffDays >= 365) {
+      let value = Math.floor(diffDays / 365);
+      let plural = " ano";
+      if (value >= 2) {
+        plural = " anos";
+      }
+      return "Cerca de " + value + plural + " atrás";
+    }
+    if (diffDays < 365 && diffDays >= 30) {
+      let value = Math.floor(diffDays / 30);
+      let plural = " mês";
+      if (value >= 2) {
+        plural = " meses";
+      }
+      return value + plural + " atrás";
+    }
+    if (diffDays < 30 && diffDays >= 7) {
+      let value = Math.floor(diffDays / 7);
+      let plural = " semana";
+      if (value >= 2) {
+        plural = " semanas";
+      }
+      return value + plural + " atrás";
+    }
+  };
+
+  formatDate = date => {
+    let newDate = new Date(date);
+    let day = newDate.getDate();
+    let month = newDate.getMonth();
+    if (month === 0) {
+      month = 1;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    console.log(date);
+    console.log(month);
+    let dateFormated = day + "/" + month + "/" + newDate.getFullYear();
+
+    return dateFormated;
   };
 
   render() {
@@ -48,11 +98,15 @@ class Card extends Component {
           </div>
 
           <div className="datecreated light regular">
-            <h4>Criado em {this.props.ticketList.DateCreate}</h4>
+            <h4>
+              Criado em {this.formatDate(this.props.ticketList.DateCreate)}
+            </h4>
           </div>
         </header>
 
         <CardContent
+          formatDate={this.formatDate}
+          formatDateToMessage={this.formatDateToMessage}
           ticketList={this.props.ticketList}
           isOpened={this.state.isOpened}
           openCard={this.openCard}
